@@ -41,18 +41,13 @@ Equipo "many" --> "many" Juego : compiten
 @startuml Diagrama de Objetos
 
 object Equipo1 {
-    Nombre = "Tigres de Aragua"
-    Registros = "Campeón 2023"
+    Nombre = "Venezuela"
+    Registros = "Campeón de los Panamericanos 2023"
 }
 
 object Equipo2 {
-    Nombre = "Leones del Caracas"
-    Registros = "Subcampeón 2023"
-}
-
-object Equipo3{
-    Nombre = "Navgantes Magallanes"
-    Registros = "Tercer Lugar 2023"
+    Nombre = "Colombia"
+    Registros = "Subcampeón de los Panamericanos 2023"
 }
 
 object Jugador1 {
@@ -103,14 +98,6 @@ object Capitan2 {
     Dirección = "Calle Ecuador"
 }
 
-object Capitan3 {
-    Numero = 64
-    Posición = "Punta"
-    Nombre = "Antonio Da Silva"
-    Teléfono = 987654321
-    Dirección = "Calle Bolivia"
-}
-
 object Entrenador1 {
     Nivel_de_acreditación = "Profesional"
     Años_de_experiencia = 10
@@ -120,27 +107,20 @@ object Entrenador1 {
 }
 
 object Juego1 {
-    Localidad = "Estadio Nacional"
+    Localidad = "Estadio Nacional de Chile"
     Puntuación = 3
-}
-
-object Juego2 {
-    Localidad = "Estadio Local"
-    Puntuación = 1
 }
 
 Equipo1 *-- Jugador1
 Equipo1 *-- Jugador2
 Equipo2 *-- Jugador3
-Equipo3 *-- Jugador4
+Equipo2 *-- Jugador4
 Equipo1 -- Capitan1 : tiene
 Equipo2 -- Capitan2 : tiene
-Equipo3 -- Capitan3 : tiene
 Equipo1 --> Entrenador1 : puede tener
 Entrenador1 --> Equipo2 : puede entrenar
 Equipo1 --> Juego1 : compite
 Equipo2 --> Juego1 : compite
-Equipo2 --> Juego2 : compite
-Equipo3 --> Juego2 : compite
+
 
 @enduml
