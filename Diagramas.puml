@@ -1,0 +1,78 @@
+@startuml Diagrama de Estado
+[*] --> EncargarProducto
+state choice1 <<choice>>
+
+state EncargarProducto {
+EncargarProducto : Cliente
+EncargarProducto --> Pagar
+EncargarProducto --> ValidarPedido : Pedido colocado
+}
+
+state Pagar {
+Pagar : Cliente
+Pagar --> ObtenerProducto : Pedido pagado por adelantado
+
+}
+
+state ValidarPedido {
+ValidarPedido : Procesamiento de Pedido
+ValidarPedido-->CobrarPago
+
+}
+
+state CobrarPago {
+CobrarPago : Procesamiento de Pedido
+CobrarPago -->  PedidoAceptado
+CobrarPago --> DarCervezas
+CobrarPago --> ObtenerProducto : Pagao por adelantado
+}
+
+state PedidoAceptado {
+PedidoAceptado : Realización
+PedidoAceptado --> ObtenerProducto
+}
+
+state ObtenerProducto {
+ObtenerProducto : Realización
+ObtenerProducto -->choice1
+choice1--> EnviarUrgente : Si es urgente
+choice1--> EnviarOrdinario : Si no es urgente
+}
+
+
+state EnviarUrgente {
+EnviarUrgente : Realización
+EnviarUrgente --> DarCervezas : Pedido realizado
+}
+
+state EnviarOrdinario {
+EnviarOrdinario : Realización
+EnviarOrdinario --> DarCervezas : Pedido realizado
+}
+
+state DarCervezas {
+DarCervezas : Realización
+DarCervezas -->ListaClienteSatisfechos
+DarCervezas -->EnviarRecivo
+}
+
+state ListaClienteSatisfechos{
+ListaClienteSatisfechos : Procesamiento de Pedido
+}
+state EnviarRecivo{
+EnviarRecivo :  Procesamiento de Pedido
+}
+EnviarRecivo --> [*] : Recivo enviado
+ListaClienteSatisfechos--> [*] : Anadido a lista de clientes felices
+@enduml
+
+@startuml Diagrama de Comunicacion
+object Registro
+object Venta
+object Actor
+
+
+Actor -> Registro :  1. Crear Nueva Venta() 2.Introducir Articulo(ArticuloID id, int cant) 6.Finalizar Venta() 
+Registro -> Venta : 3. Get Especificacion(id) 4. crear Linea Venta(espec, cant) 7. Finaliza la Venta()
+Venta -> Registro : 5. Añadir Venta(new LineaVenta(espec, cant))
+@enduml
