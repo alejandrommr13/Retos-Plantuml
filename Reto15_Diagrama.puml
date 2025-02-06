@@ -1,0 +1,41 @@
+@startuml Reto15 Diagrama
+interface Connectable {
+    + turnOn()
+    + turnoff()
+    + isOff()
+}
+
+class Lamp {
+    + turnOn()
+    + turnoff()
+    + isOff()
+}
+
+class Computer {
+    + turnOn()
+    + turnoff()
+    + isOn()
+}
+
+class TurnOnDevices {
+    + main(String[] args )
+    + turnOnDevice(Connectable device)
+}
+
+class CoffeeMaker {
+    + on()
+    + off()
+    + isOff()
+}
+
+class AdaptadorCafetera {
+    + turnOn()
+    + isOff()
+}
+
+TurnOnDevices --> Connectable
+Lamp --|> Connectable
+Computer --|> Connectable
+AdaptadorCafetera --|> Connectable
+AdaptadorCafetera ..> CoffeeMaker
+@enduml
